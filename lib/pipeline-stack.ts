@@ -55,6 +55,19 @@ export class PipelineStack extends cdk.Stack {
             ),
           }),
         }),
+        new CodeBuildAction({
+          actionName: "Service_Build",
+          input: serviceSourceOutput,
+          outputs: [serviceBuildOutput],
+          project: new PipelineProject(this, "ServiceBuildProject", {
+            environment: {
+              buildImage: LinuxBuildImage.STANDARD_5_0,
+            },
+            buildSpec: BuildSpec.fromSourceFilename(
+              "build-specs/service-build-spec.yml"
+            ),
+          }),
+        }),
       ],
     });
     pipeline.addStage({
