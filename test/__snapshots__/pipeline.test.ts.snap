@@ -304,12 +304,12 @@ Object {
                   "OAuthToken": "{{resolve:secretsmanager:github-token:SecretString:::}}",
                   "Owner": "saeidp",
                   "PollForSourceChanges": false,
-                  "Repo": "aws-pipeline",
+                  "Repo": "express-lambda",
                 },
-                "Name": "Pipeline_Source",
+                "Name": "Service_Source",
                 "OutputArtifacts": Array [
                   Object {
-                    "Name": "CDKSourceOutput",
+                    "Name": "ServiceSourceOutput",
                   },
                 ],
                 "RunOrder": 1,
@@ -326,12 +326,12 @@ Object {
                   "OAuthToken": "{{resolve:secretsmanager:github-token:SecretString:::}}",
                   "Owner": "saeidp",
                   "PollForSourceChanges": false,
-                  "Repo": "express-lambda",
+                  "Repo": "aws-pipeline",
                 },
-                "Name": "Service_Source",
+                "Name": "Pipeline_Source",
                 "OutputArtifacts": Array [
                   Object {
-                    "Name": "ServiceSourceOutput",
+                    "Name": "CDKSourceOutput",
                   },
                 ],
                 "RunOrder": 1,
