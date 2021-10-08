@@ -21,19 +21,19 @@ export class PipelineStack extends cdk.Stack {
       actions: [
         new GitHubSourceAction({
           owner: "saeidp",
-          repo: "aws-pipeline",
-          branch: "master",
-          actionName: "Pipeline_Source",
-          oauthToken: SecretValue.secretsManager("github-token"),
-          output: cdkSourceOutput,
-        }),
-        new GitHubSourceAction({
-          owner: "saeidp",
           repo: "express-lambda",
           branch: "master",
           actionName: "Service_Source",
           oauthToken: SecretValue.secretsManager("github-token"),
           output: serviceSourceOutput,
+        }),
+        new GitHubSourceAction({
+          owner: "saeidp",
+          repo: "aws-pipeline",
+          branch: "master",
+          actionName: "Pipeline_Source",
+          oauthToken: SecretValue.secretsManager("github-token"),
+          output: cdkSourceOutput,
         }),
       ],
     });
