@@ -1,6 +1,6 @@
 import * as cdk from "@aws-cdk/core";
 import { Artifact, Pipeline } from "@aws-cdk/aws-codepipeline";
-import { CodeBuildAction, GitHubSourceAction } from "@aws-cdk/aws-codepipeline-actions";
+import { CloudFormationCreateUpdateStackAction, CodeBuildAction, GitHubSourceAction } from "@aws-cdk/aws-codepipeline-actions";
 import { SecretValue } from "@aws-cdk/core";
 import { BuildSpec, LinuxBuildImage, PipelineProject } from "@aws-cdk/aws-codebuild";
 
@@ -48,5 +48,17 @@ export class PipelineStack extends cdk.Stack {
         }),
       ],
     });
+    pipeline.addStage({
+      stageName: "Pipeline_Update",
+      actions: [
+        new CloudFormationCreateUpdateStackAction({
+          actionName: "Pipeline_Update",
+          stackName: "PipelineStack",
+          templatePath: cdkBuildOutput.atPath("PipelineStack.template.json"),
+          adminPermissions: true,
+        }),
+      ],
+    });
+
   }
 }
